@@ -13,23 +13,27 @@ export default function App() {
   // See documentation for <Routes /> for more info
   const pages = import.meta.globEager("./pages/**/!(*.test.[jt]sx)*.([jt]sx)");
 
+  const navMenuVisible = true;
+
   return (
     <PolarisProvider>
       <BrowserRouter>
         <AppBridgeProvider>
           <QueryProvider>
-            {false && (<NavigationMenu
-              navigationLinks={[
-                {
-                  label: "Page name",
-                  destination: "/pagename",
-                },
-                {
-                  label: "Test page",
-                  destination: "/test",
-                },
-              ]}
-            />)}
+            {navMenuVisible && (
+              <NavigationMenu
+                navigationLinks={[
+                  {
+                    label: "Page name",
+                    destination: "/pagename",
+                  },
+                  {
+                    label: "Funnels",
+                    destination: "/funnels",
+                  },
+                ]}
+              />
+            )}
             <Routes pages={pages} />
           </QueryProvider>
         </AppBridgeProvider>
